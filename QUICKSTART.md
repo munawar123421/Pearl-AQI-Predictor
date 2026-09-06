@@ -26,7 +26,7 @@ bash scripts/run_demo.sh
 # Option C: Run step by step
 python scripts/backfill.py --demo --start 2025-01-01 --end 2025-02-01
 python scripts/train.py --demo
-python scripts/predict.py --city delhi --demo
+python scripts/predict.py --city karachi --demo
 ```
 
 ## Step 3: Start Services
@@ -60,10 +60,10 @@ Try these endpoints:
 curl http://localhost:8000/health
 
 # Get forecast
-curl http://localhost:8000/api/v1/forecast?location_id=delhi
+curl http://localhost:8000/api/v1/forecast?location_id=karachi
 
 # Current observation
-curl http://localhost:8000/api/v1/current?location_id=delhi
+curl http://localhost:8000/api/v1/current?location_id=karachi
 ```
 
 ## Next Steps
@@ -86,7 +86,7 @@ curl http://localhost:8000/api/v1/current?location_id=delhi
 3. **Run with real data:**
    ```bash
    python scripts/fetch_current.py
-   python scripts/backfill.py --city Delhi --start 2024-01-01 --end 2025-01-01
+   python scripts/backfill.py --city Karachi --start 2024-01-01 --end 2025-01-01
    python scripts/train.py
    ```
 

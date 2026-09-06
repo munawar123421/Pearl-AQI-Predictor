@@ -14,7 +14,7 @@ from pearls_aqi.settings import settings
 logger = get_logger(__name__)
 
 
-def run_training(location_id: str = "delhi", min_rows: int = None):
+def run_training(location_id: str = "karachi", min_rows: int = None):
     """Run model training pipeline.
     
     Args:
@@ -152,7 +152,7 @@ def run_training(location_id: str = "delhi", min_rows: int = None):
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(description="Train AQI prediction models")
-    parser.add_argument("--location", type=str, default="delhi", help="Location ID")
+    parser.add_argument("--location", type=str, default="karachi", help="Location ID")
     parser.add_argument("--min-rows", type=int, default=None, help="Minimum training rows")
     parser.add_argument("--demo", action="store_true", help="Use demo mode")
     

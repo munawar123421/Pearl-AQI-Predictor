@@ -117,7 +117,7 @@ def run_backfill(
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(description="Backfill historical AQI data")
-    parser.add_argument("--city", type=str, default=settings.default_city, help="City name")
+    parser.add_argument("--city", type=str, default="Karachi", help="City name")
     parser.add_argument("--start", type=str, required=True, help="Start date (YYYY-MM-DD)")
     parser.add_argument("--end", type=str, required=True, help="End date (YYYY-MM-DD)")
     parser.add_argument("--interval", type=int, default=1, help="Interval in hours")

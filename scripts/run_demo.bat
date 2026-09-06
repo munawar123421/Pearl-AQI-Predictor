@@ -23,7 +23,7 @@ if errorlevel 1 (
 echo.
 
 echo Step 3: Generating forecast...
-python scripts\predict.py --city delhi --demo
+python scripts\predict.py --city karachi --demo
 if errorlevel 1 (
     echo Error in prediction step
     exit /b 1

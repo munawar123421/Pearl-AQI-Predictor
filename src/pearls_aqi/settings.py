@@ -23,10 +23,10 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
 
     # Default Location
-    default_city: str = "Delhi"
-    default_country: str = "India"
-    default_latitude: float = 28.6139
-    default_longitude: float = 77.2090
+    default_city: str = "Karachi"
+    default_country: str = "Pakistan"
+    default_latitude: float = 24.8607
+    default_longitude: float = 67.0011
     timezone: str = "UTC"
 
     # Data Provider

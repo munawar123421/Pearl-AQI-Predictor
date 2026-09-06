@@ -15,7 +15,7 @@ python scripts/train.py --demo
 echo ""
 
 echo "Step 3: Generating forecast..."
-python scripts/predict.py --city delhi --demo
+python scripts/predict.py --city karachi --demo
 echo ""
 
 echo "======================================"

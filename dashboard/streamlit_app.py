@@ -72,7 +72,7 @@ def main():
     
     location_id = st.sidebar.selectbox(
         "Select Location",
-        ["delhi", "mumbai", "beijing", "london", "new_york"],
+        ["karachi", "lahore", "beijing", "london", "new_york"],
         index=0,
     )
     

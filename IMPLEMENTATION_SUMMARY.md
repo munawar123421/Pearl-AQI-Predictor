@@ -385,6 +385,5 @@ The Pearls AQI Predictor is fully functional and ready for:
 
 ---
 
-*Implemented by: Manus AI*  
 *Date: September 6, 2026*  
 *Version: 1.0.0*

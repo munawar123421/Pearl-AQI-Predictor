@@ -64,7 +64,7 @@ def run_prediction(location_id: str, horizon_days: int = 3, output_file: str = N
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(description="Generate AQI forecast")
-    parser.add_argument("--city", type=str, default="delhi", help="City name (lowercase)")
+    parser.add_argument("--city", type=str, default="karachi", help="City name (lowercase)")
     parser.add_argument("--horizon", type=int, default=3, help="Forecast horizon (days)")
     parser.add_argument("--output", type=str, default=None, help="Output file path")
     parser.add_argument("--demo", action="store_true", help="Use demo mode")

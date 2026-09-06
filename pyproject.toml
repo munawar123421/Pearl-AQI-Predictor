@@ -9,9 +9,6 @@ description = "End-to-end air quality forecasting platform"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
-authors = [
-    {name = "Manus AI", email = "contact@example.com"}
-]
 keywords = ["aqi", "air-quality", "forecasting", "machine-learning", "mlops"]
 classifiers = [
     "Development Status :: 4 - Beta",

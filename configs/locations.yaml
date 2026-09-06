@@ -1,22 +1,22 @@
 # Configured Locations for AQI Prediction
 
 locations:
-  - location_id: "delhi"
-    city: "Delhi"
-    country: "India"
-    latitude: 28.6139
-    longitude: 77.2090
-    timezone: "Asia/Kolkata"
-    aqicn_station: "@A97507"
+  - location_id: "karachi"
+    city: "Karachi"
+    country: "Pakistan"
+    latitude: 24.8607
+    longitude: 67.0011
+    timezone: "Asia/Karachi"
+    aqicn_station: "@A113155"
     enabled: true
   
-  - location_id: "mumbai"
-    city: "Mumbai"
-    country: "India"
-    latitude: 19.0760
-    longitude: 72.8777
-    timezone: "Asia/Kolkata"
-    aqicn_station: "@A246723"
+  - location_id: "lahore"
+    city: "Lahore"
+    country: "Pakistan"
+    latitude: 31.5204
+    longitude: 74.3587
+    timezone: "Asia/Karachi"
+    aqicn_station: "@A248278"
     enabled: false
   
   - location_id: "beijing"

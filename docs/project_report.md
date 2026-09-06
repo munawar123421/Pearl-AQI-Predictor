@@ -470,5 +470,4 @@ The Pearls AQI Predictor is a complete, working system ready for demo and pilot 
 ---
 
 *Implementation completed: September 6, 2026*  
-*Author: Manus AI*  
 *Version: 1.0.0*

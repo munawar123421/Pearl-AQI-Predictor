@@ -70,7 +70,7 @@ python scripts/backfill.py --demo --start 2025-01-01 --end 2025-02-01
 python scripts/train.py --demo
 
 # 3. Generate forecast
-python scripts/predict.py --city Delhi --demo
+python scripts/predict.py --city Karachi --demo
 
 # 4. Start dashboard
 streamlit run dashboard/streamlit_app.py
@@ -89,7 +89,7 @@ streamlit run dashboard/streamlit_app.py
 python scripts/fetch_current.py
 
 # Backfill historical data
-python scripts/backfill.py --city Delhi --start 2024-01-01 --end 2025-01-01
+python scripts/backfill.py --city Karachi --start 2024-01-01 --end 2025-01-01
 
 # Train models
 python scripts/train.py
@@ -135,7 +135,7 @@ python scripts/backfill.py --demo --start 2025-01-01 --end 2025-02-01
 python scripts/train.py --demo
 
 # Prediction
-python scripts/predict.py --city Delhi --demo
+python scripts/predict.py --city Karachi --demo
 
 # Services
 uvicorn src.pearls_aqi.api.app:app --reload  # FastAPI
@@ -235,11 +235,11 @@ FastAPI server provides REST endpoints:
 
 - `GET /health` - Service health check
 - `GET /api/v1/locations` - Configured locations
-- `GET /api/v1/current?location_id=delhi` - Current observations
-- `GET /api/v1/forecast?location_id=delhi` - 3-day forecast
-- `GET /api/v1/features?location_id=delhi` - Recent features
+- `GET /api/v1/current?location_id=karachi` - Current observations
+- `GET /api/v1/forecast?location_id=karachi` - 3-day forecast
+- `GET /api/v1/features?location_id=karachi` - Recent features
 - `GET /api/v1/model` - Model metadata
-- `GET /api/v1/explanation?location_id=delhi` - Feature importance
+- `GET /api/v1/explanation?location_id=karachi` - Feature importance
 
 API documentation: http://localhost:8000/docs
 
@@ -272,7 +272,7 @@ Key environment variables:
 APP_ENV=development
 DEMO_MODE=true
 LOG_LEVEL=INFO
-DEFAULT_CITY=Delhi
+DEFAULT_CITY=Karachi
 FORECAST_HORIZON_DAYS=3
 POLLUTION_ALERT_AQI=150
 HAZARDOUS_AQI=300

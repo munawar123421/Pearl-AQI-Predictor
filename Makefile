@@ -46,7 +46,7 @@ demo:
 	@echo "Running complete demo workflow..."
 	python scripts/backfill.py --demo --start 2025-01-01 --end 2025-02-01
 	python scripts/train.py --demo
-	python scripts/predict.py --city Delhi --demo
+	python scripts/predict.py --city Karachi --demo
 	@echo "Demo complete! Run 'make dashboard' to view results."
 
 backfill:
@@ -56,7 +56,7 @@ train:
 	python scripts/train.py --demo
 
 predict:
-	python scripts/predict.py --city Delhi --demo
+	python scripts/predict.py --city Karachi --demo
 
 api:
 	python -m uvicorn src.pearls_aqi.api.app:app --reload --host 0.0.0.0 --port 8000
