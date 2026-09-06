@@ -1,0 +1,47 @@
+# Configured Locations for AQI Prediction
+
+locations:
+  - location_id: "delhi"
+    city: "Delhi"
+    country: "India"
+    latitude: 28.6139
+    longitude: 77.2090
+    timezone: "Asia/Kolkata"
+    aqicn_station: "@A97507"
+    enabled: true
+  
+  - location_id: "mumbai"
+    city: "Mumbai"
+    country: "India"
+    latitude: 19.0760
+    longitude: 72.8777
+    timezone: "Asia/Kolkata"
+    aqicn_station: "@A246723"
+    enabled: false
+  
+  - location_id: "beijing"
+    city: "Beijing"
+    country: "China"
+    latitude: 39.9042
+    longitude: 116.4074
+    timezone: "Asia/Shanghai"
+    aqicn_station: "@A1437"
+    enabled: false
+  
+  - location_id: "london"
+    city: "London"
+    country: "United Kingdom"
+    latitude: 51.5074
+    longitude: -0.1278
+    timezone: "Europe/London"
+    aqicn_station: "@A7956"
+    enabled: false
+  
+  - location_id: "new_york"
+    city: "New York"
+    country: "United States"
+    latitude: 40.7128
+    longitude: -74.0060
+    timezone: "America/New_York"
+    aqicn_station: "@A7404"
+    enabled: false

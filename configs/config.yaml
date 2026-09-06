@@ -1,0 +1,137 @@
+# Pearls AQI Predictor Configuration
+
+app:
+  name: "Pearls AQI Predictor"
+  version: "1.0.0"
+  timezone: "UTC"
+
+data_providers:
+  mock:
+    enabled: true
+    description: "Synthetic data generator for demo mode"
+  
+  aqicn:
+    enabled: false
+    base_url: "https://api.waqi.info"
+    timeout: 30
+    max_retries: 3
+    retry_backoff: 2
+  
+  openweather:
+    enabled: false
+    base_url: "https://api.openweathermap.org/data/2.5"
+    timeout: 30
+    max_retries: 3
+    retry_backoff: 2
+
+feature_store:
+  local:
+    format: "parquet"
+    partition_by: ["location_id", "date"]
+    compression: "snappy"
+  
+  cloud:
+    backend: null  # "hopsworks" or "vertex_ai"
+    project: null
+    feature_group: "aqi_features"
+    version: 1
+
+model_registry:
+  backend: "local"  # "local" or "cloud"
+  versioning: "timestamp"
+  champion_selection: "validation_mae"  # "validation_mae" or "validation_rmse"
+  min_data_quality: 0.8
+
+training:
+  min_rows: 168
+  train_split: 0.70
+  validation_split: 0.15
+  test_split: 0.15
+  temporal_gap_hours: 24
+  random_seed: 42
+  
+  models:
+    naive:
+      enabled: true
+    ridge:
+      enabled: true
+      alpha: [0.1, 1.0, 10.0]
+    random_forest:
+      enabled: true
+      n_estimators: [50, 100]
+      max_depth: [10, 20, null]
+      min_samples_split: [2, 5]
+    lstm:
+      enabled: true
+      min_rows_required: 1000
+      epochs: 50
+      batch_size: 32
+      units: [64, 32]
+
+forecasting:
+  horizon_days: 3
+  daily_aggregation: "mean"  # "mean", "max", or "median"
+  uncertainty_method: "ensemble"  # "ensemble" or "residual"
+  confidence_level: 0.9
+
+aqi_categories:
+  - name: "Good"
+    min: 0
+    max: 50
+    color: "green"
+    health_message: "Air quality is satisfactory"
+  
+  - name: "Moderate"
+    min: 51
+    max: 100
+    color: "yellow"
+    health_message: "Air quality is acceptable"
+  
+  - name: "Unhealthy for Sensitive Groups"
+    min: 101
+    max: 150
+    color: "orange"
+    health_message: "Sensitive groups may experience health effects"
+  
+  - name: "Unhealthy"
+    min: 151
+    max: 200
+    color: "red"
+    health_message: "Everyone may begin to experience health effects"
+  
+  - name: "Very Unhealthy"
+    min: 201
+    max: 300
+    color: "purple"
+    health_message: "Health alert: everyone may experience serious effects"
+  
+  - name: "Hazardous"
+    min: 301
+    max: 500
+    color: "maroon"
+    health_message: "Health warning: emergency conditions"
+
+alerts:
+  pollution_alert_threshold: 150
+  hazardous_threshold: 300
+  notification_channels: ["log", "dashboard"]  # "log", "dashboard", "email"
+
+data_quality:
+  max_missing_fields: 5
+  max_observation_age_hours: 6
+  min_observations_for_training: 168
+  duplicate_detection: true
+
+logging:
+  level: "INFO"
+  format: "json"
+  include_request_id: true
+  
+pipelines:
+  hourly_features:
+    schedule: "0 * * * *"  # Every hour
+    timeout_minutes: 15
+  
+  daily_training:
+    schedule: "0 2 * * *"  # Daily at 2 AM UTC
+    timeout_minutes: 60
