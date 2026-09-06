@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: pearls-aqi-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DEMO_MODE=true
+      - DATA_PROVIDER=mock
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/app/data
+      - ./.env:/app/.env
+    command: uvicorn src.pearls_aqi.api.app:app --host 0.0.0.0 --port 8000
+    restart: unless-stopped
+
+  dashboard:
+    build: .
+    container_name: pearls-aqi-dashboard
+    ports:
+      - "8501:8501"
+    environment:
+      - DEMO_MODE=true
+      - DATA_PROVIDER=mock
+    volumes:
+      - ./data:/app/data
+      - ./.env:/app/.env
+    command: streamlit run dashboard/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
+    restart: unless-stopped
+    depends_on:
+      - api
+
+networks:
+  default:
+    name: pearls-aqi-network
