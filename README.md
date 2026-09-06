@@ -26,12 +26,27 @@ See [docs/architecture.md](docs/architecture.md) for detailed architecture.
 
 ## Quick Start
 
-### 1. Installation
+### Option 1: Docker (Recommended)
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd pearls-aqi-predictor
+git clone https://github.com/munawar123421/Pearl-AQI-Predictor.git
+cd Pearl-AQI-Predictor
+
+# Start with Docker Compose
+docker-compose up
+
+# Access:
+# API: http://localhost:8000
+# Dashboard: http://localhost:8501
+```
+
+### Option 2: Local Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/munawar123421/Pearl-AQI-Predictor.git
+cd Pearl-AQI-Predictor
 
 # Create virtual environment
 python -m venv .venv
@@ -44,22 +59,17 @@ source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
-```
 
-### 2. Configuration
-
-```bash
-# Copy example configuration
+# Configuration
 copy .env.example .env
-
 # Edit .env with your settings (optional for demo mode)
 ```
 
 ### 3. Run Demo Mode
 
 ```bash
-# Run complete demo workflow
-.\scripts\run_demo.sh
+# Run complete demo workflow (Windows)
+scripts\run_demo.bat
 
 # Or run individual steps:
 
@@ -70,55 +80,38 @@ python scripts/backfill.py --demo --start 2025-01-01 --end 2025-02-01
 python scripts/train.py --demo
 
 # 3. Generate forecast
-python scripts/predict.py --city Karachi --demo
+python scripts/predict.py --city karachi --demo
 
-# 4. Start dashboard
+# 4. Start services
+# Terminal 1 - API
+python -m uvicorn src.pearls_aqi.api.app:app --reload
+
+# Terminal 2 - Dashboard
 streamlit run dashboard/streamlit_app.py
 ```
 
 ### 4. Run with Real APIs
 
-```bash
-# Configure .env with your API keys:
-# - AQICN_TOKEN from https://aqicn.org/data-platform/token/
-# - OPENWEATHER_API_KEY from https://openweathermap.org/api
+1. **Get API Keys:**
+   - AQICN: https://aqicn.org/data-platform/token/
+   - OpenWeather: https://openweathermap.org/api
 
-# Set DEMO_MODE=false in .env
+2. **Configure .env:**
+   ```bash
+   DEMO_MODE=false
+   DATA_PROVIDER=aqicn
+   AQICN_TOKEN=your_token_here
+   AQICN_STATION=@A113155
+   ```
 
-# Fetch current data
-python scripts/fetch_current.py
-
-# Backfill historical data
-python scripts/backfill.py --city Karachi --start 2024-01-01 --end 2025-01-01
-
-# Train models
-python scripts/train.py
-
-# Start API
-python -m uvicorn src.pearls_aqi.api.app:app --reload
-
-# Start dashboard
-streamlit run dashboard/streamlit_app.py
-```
+3. **Run pipelines:**
+   ```bash
+   python scripts/fetch_current.py
+   python scripts/backfill.py --city Karachi --start 2024-01-01 --end 2025-01-01
+   python scripts/train.py
+   ```
 
 ## Commands
-
-### Using Makefile
-
-```bash
-make install       # Install dependencies
-make test          # Run all tests
-make lint          # Run linting
-make demo          # Run complete demo workflow
-make backfill      # Generate demo historical data
-make train         # Train models
-make predict       # Generate forecast
-make api           # Start FastAPI server
-make dashboard     # Start Streamlit dashboard
-make clean         # Clean generated files
-```
-
-### Manual Commands
 
 ```bash
 # Testing
@@ -259,10 +252,6 @@ The Streamlit dashboard provides:
 ## Documentation
 
 - [Architecture](docs/architecture.md) - System design and data flow
-- [Data Dictionary](docs/data_dictionary.md) - Fields, types, and sources
-- [Operations](docs/operations.md) - Deployment and maintenance
-- [Model Report](docs/model_report.md) - ML methodology and results
-- [Project Report](docs/project_report.md) - Implementation details
 
 ## Configuration
 
